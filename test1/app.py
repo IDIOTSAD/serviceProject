@@ -21,9 +21,9 @@ information = []
 name = []
 pos = []
 dbresult = ()
-db = pymysql.connect(host='127.0.0.1', port=330, user='root', passwd='0000', db='mountain', charset='utf8')
+db = pymysql.connect(host='ls-dabfbe9c5ca0935227d202f8d155d3e6b5c45c39.c5fozztbs2zp.ap-northeast-2.rds.amazonaws.com', port=3306, user='dbmasteruser', passwd='6E0C?Qz|^%qL3<XR;)N:eO=QDq%lYWd>', db='mn', charset='utf8')
 cursor = db.cursor()
-sql = 'select * from data'
+sql = 'select * from mountain'
 cursor.execute(sql)
 dbresult = cursor.fetchall()
 tmp = dbresult
@@ -252,4 +252,4 @@ def pos():
         return render_template('view.html', getdata=0)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port="5000")
