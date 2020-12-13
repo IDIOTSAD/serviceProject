@@ -1,9 +1,11 @@
+import numpy
 from flask import Flask, request, redirect, jsonify
 from flask import render_template
 from flask_cors import CORS, cross_origin
 from urllib.request import Request, urlopen
 from urllib.parse import urlencode, quote_plus, unquote
 import xml.etree.ElementTree as ET
+import numpy as np
 from haversine import haversine
 import pandas as pd
 import sys
@@ -13,6 +15,7 @@ app = Flask(__name__)
 CORS(app)
 app.config['JSON_AS_ASCII'] = False
 
+loadlist = []
 gpslist = []
 information = []
 name = []
@@ -120,15 +123,23 @@ def result():
 def index():
     return render_template("index.html")
 
-@app.route("/portfolio-details.html", methods = ['POST', 'GET'])
+@app.route("/portfolio-detail.html", methods = ['POST', 'GET'])
 def pro():
     if request.method == 'POST':
+        global loadlist
+        load = []
         mnname = request.form
         for key in mnname.keys():
             for value in mnname.getlist(key):
-                print (key, ":", value)
+                print ("port " + key, ":", value)
+                load.append(value)
+            loadlist.append(load)
+    return redirect("portfolio-details.html")
 
-    return render_template("portfolio-details.html")
+@app.route("/portfolio-details.html")
+def pro2():
+    print(loadlist)
+    return render_template("portfolio-details.html", lists = loadlist)
 
 @app.route("/ppt.html")
 def ppt():
@@ -152,7 +163,12 @@ tmp33 = []
 tmp4 = []
 tmp5 = []
 passdata = 0.0
-@app.route('/', methods=['GET','POST'])
+
+@app.route('/')
+def ma():
+    return redirect("index.html")
+
+@app.route('/view.html', methods=['GET','POST'])
 def pos():
     global tmp33
     passdata = 0
@@ -183,7 +199,21 @@ def pos():
                 tmp6 = []
                 for i in range(0, 10):
                     tmp6.append(tmp3[i])
-                return render_template('view.html', getdata=tmp3[9][1], getlist=tmp6)
+                db = pymysql.connect(host='127.0.0.1', port=330, user='root', passwd='0000', db='mountain',
+                                     charset='utf8')
+                dbresult2 = ()
+                cursor = db.cursor()
+                print(tmp6)
+                for i in range(0, 10):
+                    sql = 'select lat, lot from data where name="' + tmp6[i][0] + '"'
+                    cursor.execute(sql)
+                    dbresult2 += cursor.fetchall()
+
+                #dbresult2 = [list(dbresult2[x]) for x in range(len(dbresult2))]
+                print(dbresult2)
+                db.close()
+
+                return render_template('view.html', getdata=tmp3[9][1], getlist=tmp6, marker=dbresult2)
 
             #com_loc = (36.984651947738186, 128.25628173348173)
             #passdata = haversine(my_loc, com_loc)
@@ -220,7 +250,6 @@ def pos():
 
     else:
         return render_template('view.html', getdata=0)
-
 
 if __name__ == "__main__":
     app.run()

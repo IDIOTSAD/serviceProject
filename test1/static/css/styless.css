@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+/* 공통옵션 */
+ul li {list-style:none;}
+.fl {float:left;}
+.tc {text-align:center;}
+
+/* 게시판 목록 */
+.board {width: 730px; }
+.w70 {width:70px; }
+.w500 {width:500px; }
+.w120 {width:120px; }
+.w100 {width:100px; }
+
+/* title : 번호, 산이름, 거리 항목에 스타일 적용 */
+.title{
+    height: 50px;
+	line-height: 50px;
+	background:skyblue;
+	border-radius: 4px;
+	font-weight: bold;
+}
+
+.t_line {border-right:solid 1px gray;}
+.lt_line {border-bottom:solid 1px gray;}
+.fl_line {border-right:solid 1px gray; border-left:solid 1px gray;}
+.list {
+    height: 40px;
+	line-height: 40px;
+	border-radius: 4px;
+	background: #f3f3f3;
+}
+
+button {
+    border: 2px solid #87CEFA;
+    background-color: #EBFBFF;
+    border-radius: 4px;
+    color: #91D8FA;
+    outline: #28AEFF;
+    font-weight: bold;
+}
+
+button:hover{
+    color: white;
+    background-color: #91D8FA;
+}
+
+.plus_btn{
+    width:40pt;
+    height:40pt;
+    padding-left:12px;
+    padding-right:12px;
+    margin-top:-12pt;
+    margin-bottom:-6.5pt;
+    font-size: 30px;
+}
+
+.minus_btn{
+    width:40pt;
+    height:40pt;
+    font-size: 40px;
+    margin-top:-6.5pt;
+    padding-left:12px;
+    padding-right:12px;
+}

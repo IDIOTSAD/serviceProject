@@ -1,42 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>:: GEOLOCATION + Daum Map API ::</title>
+<title>:: 현재 위치로 검색하기 ::</title>
 
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3d08f81ad16de468a964885317e37ff8">
 </script>
 <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function() {
-        function getLocation(position) {
+    function init()
+{
+    window.navigator.geolocation.getCurrentPosition(current_position);
+}
 
-            var latitud = position.coords.latitude;
-            var longitude = position.coords.longitude;
+function current_position(position)
+{
+    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-            pass = String(latitud) + "/" + String(longitude);
-            document.frm.form_name.value=pass;
+    pass = String(position.coords.latitude) + "/" + String(position.coords.longitude);
+    document.frm.form_name.value=pass;
 
-            var mapContainer = document.getElementById("map")    // 지도를 표시할 DIV
-            var mapOption = {
-                  center : new daum.maps.LatLng(latitud, longitude)    // 지도의 중심좌표
-                , level : 3    // 지도의 확대레벨
-            };
-            // 지도를 생성
-            var map = new daum.maps.Map(mapContainer, mapOption);
-            // 마커가 표시될 위치
-            var markerPosition = new daum.maps.LatLng(latitud, longitude);
-            // 마커를 생성
-            var marker = new daum.maps.Marker({ position:markerPosition });
-            marker.setMap(map);
-        }
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(getLocation, function(error) {
-                consol.log(error.message);
-            });
-        } else {
-            consol.log("Geolocation을 지원하지 않는 브라우저 입니다.");
-        }
+    var map_options = {
+        center:latlng,zoom:14,
+        mapTypeId:google.maps.MapTypeId.ROADMAP,
+        mapTypeControl:false,
+        navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+    }
 
-    });
+    var map = new google.maps.Map(document.getElementById("google_map"), map_options);
+
+    var marker = new google.maps.Marker({position:latlng,map:map,title:"You are here!"});
+    }
+window.addEventListener("load", init);
 </script>
     <script>
     window.onload = function() {//문서가 로딩되면
@@ -52,31 +45,40 @@
         });
     }
 }
-
+</script>
+    <script>
+    window.onload = function() {//문서가 로딩되면
+    var objs = document.getElementsByTagName('li');
+    for (var i=0; i<objs.length; i++) {
+        objs[i].addEventListener('click', function() {
+            if (this.getAttribute("id") == 'test') {
+                alert('참');
+            }
+            else {
+                alert('거짓');
+            }
+        });
+    }
+}
     </script>
-<link href="static/css/style.css?ver=14" rel="stylesheet" />
+<link href="static/css/styless.css?ver=14" rel="stylesheet" />
 </head>
 <body>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP5FCBBiQgHQE1shTj-6E5iU74qCPaU4g&callback=initMap"></script>
+  <script src="/static/js/maps.js"></script>
+
     <h1 style="text-align:center"> 명산 </h1>
-    <div id="map"  style="width:700px;height:600px;float: left;margin-right:20px;margin-left:20px;"></div>
+    <div id="google_map" style="width:500px;height:500px;"></div>
+
     <form method="post" name="frm" style="float:left;">
         <input type="hidden" name="form_name" value="">
-        <input type="button" name="dd" value="주변 명산 리스트 검색" onclick="search_click()" style="width:150pt;height:50pt;">
+        <input type="button" name="dd" value="주변 명산 리스트 검색" onclick="search_click();search_click2()" style="width:150pt;height:50pt;">
     </form>
-    <iframe name='ifrm' width='500' height='500' frameborder='0' style="display:none"></iframe>
-
-    <script>
-
-    </script>
     <p class="letter" style="float: left;margin:6pt;">
         <p style="float: left;"> 탐색반경 : </p>
         <p id="kmdata" style="float: left;"> {{getdata}} </p>
         <p style="float: left;margin-right:8pt;">km</p>
     </p>
-
-    <script>
-
-    </script>
 
     <form method="post" name = "pl">
         <input id = "plus" type="hidden" name="form_name2" value="0">
@@ -89,19 +91,15 @@
         <input type="hidden" name="minus_data">
         <input type="button" name="min" value="-" onclick="minus_click();">
     </form>
-
-
   	<!---기본 메뉴--->
-    <div style="float:right; margin-top:-10pt;">
+    <div style="float:left; margin-top:-10pt;">
     <ul class="board">
-	  	<li class="fl tc w70 title t_line">번호</li>
 	  	<li class="fl tc w500 title t_line">산 이름</li>
 	  	<li class="fl tc w120 title t_line">거리</li>
     </ul>
     {% for mountain, distance in getlist %}
     <!--- 리스트 --->
     <ul class="board">
-        <li class="fl tc w70 list t_line lt_line"  onclick="click()">1</li>
 	  	<li class="fl tc w500 list t_line lt_line">{{mountain}}</li>
 	  	<li class="fl tc w120 list t_line lt_line">{{distance}}km</li>
     </ul>
@@ -111,6 +109,7 @@
         var count = 0;
         function search_click(){
             document.frm.submit();
+
         }
         function plus_click(){
             count += 1;
@@ -135,7 +134,5 @@
             alert(2);
         }
     </script>
-
 </body>
-
 </html>

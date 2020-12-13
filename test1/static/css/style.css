@@ -8,14 +8,8 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-
-@font-face {
-    font-family: 'NanumGothic';
-    src: url(NanumFont_TTF_ALL/NanumGothic.ttf) format('truetype');
-}
-
 body {
-  font-family: NanumGothic;
+  font-family: "Open Sans", sans-serif;
   color: #444444;
 }
 
@@ -29,7 +23,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: NanumGothic;
+  font-family: "Raleway", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -125,7 +119,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #5f687b;
   transition: 0.3s;
   font-size: 14px;
-  font-family: NanumGothic;
+  font-family: "Open Sans", sans-serif;
 }
 
 .nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
@@ -171,7 +165,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-menu .drop-down > a:after {
   content: "\ea99";
-  font-family: NanumGothic;
+  font-family: IcoFont;
   padding-left: 5px;
 }
 
@@ -192,7 +186,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-menu .drop-down .drop-down > a:after {
   content: "\eaa0";
-  font-family: NanumGothic;
+  font-family: IcoFont;
   position: absolute;
   right: 15px;
 }
@@ -294,7 +288,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .mobile-nav .drop-down > a:after {
   content: "\ea99";
-  font-family: NanumGothic;
+  font-family: IcoFont;
   padding-left: 10px;
   position: absolute;
   right: 15px;
@@ -368,7 +362,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #hero .btn-get-started {
-  font-family: NanumGothic;
+  font-family: "Raleway", sans-serif;
   font-weight: 500;
   font-size: 16px;
   letter-spacing: 1px;
@@ -619,7 +613,7 @@ section {
 .counts .counters p {
   padding: 0;
   margin: 0 0 20px 0;
-  font-family: NanumGothic;
+  font-family: "Raleway", sans-serif;
   font-size: 14px;
   font-weight: 600;
 }
@@ -860,7 +854,7 @@ section {
 }
 
 .cta .cta-btn {
-  font-family: NanumGothic;
+  font-family: "Raleway", sans-serif;
   text-transform: uppercase;
   font-weight: 500;
   font-size: 16px;
@@ -1036,7 +1030,7 @@ section {
 .contact .php-email-form .sent-message {
   display: none;
   color: #fff;
-  background: #000000;
+  background: #18d26e;
   text-align: center;
   padding: 15px;
   font-weight: 600;
@@ -1258,13 +1252,6 @@ section {
   position: relative;
 }
 
-#footer_clean {
-  background-color: #000000;
-  color: #5f687b;
-  font-size: 14px;
-  position: relative;
-}
-
 #footer .footer-top {
   position: relative;
   z-index: 2;
@@ -1272,13 +1259,12 @@ section {
   padding: 80px 0;
 }
 
-
 #footer .footer-top h3 {
   font-size: 36px;
   font-weight: 700;
   color: #5f687b;
   position: relative;
-  font-family: NanumGothic;
+  font-family: "Poppins", sans-serif;
   padding-bottom: 0;
   margin-bottom: 0;
 }
@@ -1295,7 +1281,6 @@ section {
   font-size: 15px;
   margin-top: 30px;
 }
-
 
 #footer .footer-top .footer-newsletter form {
   background: #fff;
@@ -1380,67 +1365,4 @@ section {
     -moz-text-align-last: center;
     text-align-last: center;
   }
-}
-/* 공통옵션 */
-ul li {list-style:none;}
-.fl {float:left;}
-.tc {text-align:center;}
-
-/* 게시판 목록 */
-.board {width: 730px; }
-.w70 {width:70px; }
-.w500 {width:500px; }
-.w120 {width:120px; }
-.w100 {width:100px; }
-
-/* title : 번호, 산이름, 거리 항목에 스타일 적용 */
-.title{
-    height: 50px;
-	line-height: 50px;
-	background:skyblue;
-	border-radius: 4px;
-	font-weight: bold;
-}
-
-.t_line {border-right:solid 1px gray;}
-.lt_line {border-bottom:solid 1px gray;}
-.fl_line {border-right:solid 1px gray; border-left:solid 1px gray;}
-.list {
-    height: 40px;
-	line-height: 40px;
-	border-radius: 4px;
-	background: #f3f3f3;
-}
-
-button {
-    border: 2px solid #87CEFA;
-    background-color: #EBFBFF;
-    border-radius: 4px;
-    color: #91D8FA;
-    outline: #28AEFF;
-    font-weight: bold;
-}
-
-button:hover{
-    color: white;
-    background-color: #91D8FA;
-}
-
-.plus_btn{
-    width:40pt;
-    height:40pt;
-    padding-left:12px;
-    padding-right:12px;
-    margin-top:-12pt;
-    margin-bottom:-6.5pt;
-    font-size: 30px;
-}
-
-.minus_btn{
-    width:40pt;
-    height:40pt;
-    font-size: 40px;
-    margin-top:-6.5pt;
-    padding-left:12px;
-    padding-right:12px;
 }

@@ -1,45 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3d08f81ad16de468a964885317e37ff8"></script>
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
     $(document).ready( function() {
-	$("#temper").load("result.html");
+        $('#result').load('http://localhost:5000/result.html');
+        console.log('불러옴')
     });
-    document.addEventListener("DOMContentLoaded", function() {
-        function getLocation(position) {
+    setInterval(function ()
+    {
+      $('#result').load('result.html').fadeIn("slow");
+    }, 1000);
 
-            var latitud = position.coords.latitude;
-            var longitude = position.coords.longitude;
-
-            var mapContainer = document.getElementById("map")    // 지도를 표시할 DIV
-            var mapOption = {
-                  center : new daum.maps.LatLng(latitud, longitude)    // 지도의 중심좌표
-                , level : 2    // 지도의 확대레벨
-            };
-            // 지도를 생성
-            var map = new daum.maps.Map(mapContainer, mapOption);
-            // 마커가 표시될 위치
-            var markerPosition = new daum.maps.LatLng(latitud, longitude);
-            // 마커를 생성
-            var marker = new daum.maps.Marker({ position:markerPosition });
-            marker.setMap(map);
-        }
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(getLocation, function(error) {
-                consol.log(error.message);
-            });
-        } else {
-            consol.log("Geolocation을 지원하지 않는 브라우저 입니다.");
-        }
-    });
 </script>
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Inner Page - eNno Bootstrap Template</title>
+  <title>:: 명산 등산로 ::</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -58,7 +36,7 @@
   <link href="static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="static/css/style.css" rel="stylesheet">
+  <link href="static/css/style.css?ver=2" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: eNno - v2.2.0
@@ -108,16 +86,11 @@
 
   <section class="inner-page">
     <div class="container">
-      <div id="map" style="width:800px;height:400px;"></div>
-      <br>
-      <br>
-      <br>
-      <a href="inner-page.html" class="venobox" data-vbtype="iframe" data-autoplay="true"><i class="icofont-play-alt-2"></i></a>
-
-
       <!-- ======= Contact Section ======= -->
       <section id="contact" class="contact">
         <div class="container">
+            <a href="view.html"><h2 align="center">현재 위치로 검색하기</h2></a>
+          <br><br><br><br>
           <div class="section-title">
             <span>이름, 지역으로 검색하기</span>
             <h2>이름, 지역으로 검색하기</h2>
@@ -138,13 +111,14 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <div class="loading">loading</nav></div>
-                  <div class="error-message" style = "background-color: #ffffff">Error!</div>
-                  <div class="sent-message" style = "background-color: #ffffff">
-                    <div id="temper"></div>
+                  <div class="loading">loading</div>
+                  <div class="error-message" style = background-color: #ffffff;>Error!</div>
+                  <div class="sent-message" style = background-color: #ffffff;>
+                    <div id="result"></div>
+                    <br><br><br>
                   </div>
                 </div>
-                <div class="text-center"><button type="submit" value="search" >검색</button></div>
+                <div class="text-center"><button type="submit" value="search">검색</button></div>
               </form>
             </div>
           </div>
