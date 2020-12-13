@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+   <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<table border = 2 bordercolor="green" align = center>
+   <thead>
+   <tr>
+      <th><font color="#000000">산이름</font></th>
+      <th><font color="#000000">산위도</font></th>
+      <th><font color="#000000">산경도</font></th>
+      <th><font color="#000000">더보기</font></th>
+   </tr>
+   </thead>
+   <tbody>
+   {% for name, lat, lot in lists %}
+   <tr>
+      <td><font color="#000000"> {{ name }}</font></td>
+      <td><font color="#000000"> {{ lat }}</font></td>
+      <td><font color="#000000"> {{ lot }}</font></td>
+      <td><font color="#000000">
+         <input type="button" class="checkBtn" value={{ name }}>
+      </font></td>
+   </tr>
+   {% endfor %}
+   </tbody>
+</table>
+<script>
+        $(".checkBtn").click(function(){
+            var str = ""
+            var tdArr = new Array();
+            var checkBtn = $(this);
+            var tr = checkBtn.parent().parent();
+            var td = tr.children();
+            var hello = { 'name' : checkBtn.val()};
+            console.log("클릭 데이터 : "+checkBtn.val());
+            $.ajax({
+               url: 'http://localhost:5000/portfolio-details.html',
+               type: 'POST',
+               data: hello,   // converts js value to JSON string
+               })
+               .done(function(){     // on success get the return object from server
+                     console.log("OK")     // do whatever with it. In this case see it in console
+               });
+        });
+    </script>
+</body>
+</html>
