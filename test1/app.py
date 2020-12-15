@@ -231,11 +231,15 @@ def pos():
 
             tmp3.sort(key=lambda x: x[1])
 
+            tmp3 = tmp3[0:11]
+
+
+
             #com_loc = (36.984651947738186, 128.25628173348173)
             #passdata = haversine(my_loc, com_loc)
             #passdata = round(passdata, 2)
             #print(str(passdata) + "km")
-            return render_template('view.html', getdata=tmp3[len(tmp3)-1][1], getlist=tmp3)
+            return render_template('view.html', getdata=tmp3[9][1], getlist=tmp3)
         except:
             try:
                 value = request.form['form_name2']
