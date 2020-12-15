@@ -246,6 +246,7 @@ def pos():
                 #dbresult2 = [list(dbresult2[x]) for x in range(len(dbresult2))]
                 print(dbresult2)
                 db.close()
+                dbresult2 = ['abc', 'def', 'ghi', 'jkl', 'mno', 'pqr', 'stu', 'vwx', 'aaa', 'bbb']
 
                 return render_template('view.html', getdata=tmp3[9][1], getlist=tmp6, marker=dbresult2)
 
