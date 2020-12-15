@@ -1,7 +1,7 @@
 var map;
 var pass;
-var lat;
-var lon;
+var lati;
+var long;
 
   new google.maps.Marker({
     position: seoul,
@@ -18,8 +18,8 @@ function current_position(position)
 {
     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-    lat = position.coords.latitude;
-    lon = position.coords.longitude;
+    lati = position.coords.latitude;
+    long = position.coords.longitude;
 
     pass = String(position.coords.latitude) + "/" + String(position.coords.longitude);
     document.frm.form_name.value=pass;
@@ -39,7 +39,7 @@ window.addEventListener("load", init);
 
 
 function initMap() {
-  var seoul = { lat: lat ,lng: lon };
+  var seoul = { lat: lati ,lng: long };
   map = new google.maps.Map( document.getElementById('map'), {
       zoom: 12,
       center: seoul
