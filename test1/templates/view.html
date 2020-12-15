@@ -13,6 +13,9 @@
             var latitud = 37.87
             var longitude = 127.96
 
+            var pass = String(latitud) + "/" + String(longitude);
+            document.frm.form_name.value = pass;
+
             var mapContainer = document.getElementById("map")    // 지도를 표시할 DIV
             var mapOption = {
                   center : new daum.maps.LatLng(latitud, longitude)    // 지도의 중심좌표
