@@ -6,30 +6,21 @@
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3d08f81ad16de468a964885317e37ff8">
 </script>
 <script type="text/javascript">
-    function init()
-{
-    window.navigator.geolocation.getCurrentPosition(current_position);
+function initMap(){
+    navigator.geolocation.getCurrentPosition(success, error);
 }
 
-function current_position(position)
-{
-    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-    pass = String(position.coords.latitude) + "/" + String(position.coords.longitude);
-    document.frm.form_name.value=pass;
-
-    var map_options = {
-        center:latlng,zoom:14,
-        mapTypeId:google.maps.MapTypeId.ROADMAP,
-        mapTypeControl:false,
-        navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
-    }
-
-    var map = new google.maps.Map(document.getElementById("google_map"), map_options);
-
-    var marker = new google.maps.Marker({position:latlng,map:map,title:"You are here!"});
-    }
-window.addEventListener("load", init);
+function success(pos) {
+    var crd = pos.coords;
+    latitud = crd.latitude
+    longitud = crd.longitude
+    document.getElementById("latitud").innerHTML = latitud
+    document.getElementById("longitud").innerHTML = longitud
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: {lat: latitud, lng: longitud},
+        zoom: 14
+    });
+};
 </script>
     <script>
     window.onload = function() {//문서가 로딩되면
