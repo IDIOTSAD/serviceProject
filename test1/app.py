@@ -231,7 +231,7 @@ def pos():
 
             tmp3.sort(key=lambda x: x[1])
 
-            tmp3 = tmp3[0:11]
+            tmp3 = tmp3[0:10]
 
 
 
