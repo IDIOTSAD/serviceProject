@@ -6,30 +6,7 @@
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3d08f81ad16de468a964885317e37ff8">
 </script>
 <script type="text/javascript">
-    function init()
-{
-    window.navigator.geolocation.getCurrentPosition(current_position);
-}
 
-function current_position(position)
-{
-    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-    pass = String(position.coords.latitude) + "/" + String(position.coords.longitude);
-    document.frm.form_name.value=pass;
-
-    var map_options = {
-        center:latlng,zoom:14,
-        mapTypeId:google.maps.MapTypeId.ROADMAP,
-        mapTypeControl:false,
-        navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
-    }
-
-    var map = new google.maps.Map(document.getElementById("google_map"), map_options);
-
-    var marker = new google.maps.Marker({position:latlng,map:map,title:"You are here!"});
-    }
-window.addEventListener("load", init);
 </script>
 <link href="static/css/styless.css?ver=14" rel="stylesheet" />
 </head>
