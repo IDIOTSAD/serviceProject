@@ -7,11 +7,14 @@
 </script>
     <script type="text/javascript">
 
-    document.addEventListener("DOMContentLoaded", function() {
+     document.addEventListener("DOMContentLoaded", function() {
         function getLocation(position) {
 
             var latitud = position.coords.latitude;
             var longitude = position.coords.longitude;
+
+            var pass = String(latitud) + "/" + String(longitude);
+            document.frm.form_name.value = pass;
 
             var mapContainer = document.getElementById("map")    // 지도를 표시할 DIV
             var mapOption = {
