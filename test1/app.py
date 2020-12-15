@@ -230,24 +230,7 @@ def pos():
             tmp33 = tmp3
 
             tmp3.sort(key=lambda x: x[1])
-            if len(tmp3) > 10:
-                tmp6 = []
-                for i in range(0, 10):
-                    tmp6.append(tmp3[i])
-                db = pymysql.connect(host='ls-dabfbe9c5ca0935227d202f8d155d3e6b5c45c39.c5fozztbs2zp.ap-northeast-2.rds.amazonaws.com', port=3306, user='dbmasteruser', passwd='6E0C?Qz|^%qL3<XR;)N:eO=QDq%lYWd>', db='mn', charset='utf8')
-                dbresult2 = ()
-                cursor = db.cursor()
-                print(tmp6)
-                for i in range(0, 10):
-                    sql = 'select lat, lot from data where name="' + tmp6[i][0] + '"'
-                    cursor.execute(sql)
-                    dbresult2 += cursor.fetchall()
-
-                #dbresult2 = [list(dbresult2[x]) for x in range(len(dbresult2))]
-                print(dbresult2)
-                db.close()
-
-                return render_template('view.html', getdata=tmp3[9][1], getlist=tmp6, marker=dbresult2)
+            
 
             #com_loc = (36.984651947738186, 128.25628173348173)
             #passdata = haversine(my_loc, com_loc)
