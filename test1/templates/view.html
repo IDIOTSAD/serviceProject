@@ -8,20 +8,12 @@
     <script type="text/javascript">
 
  document.addEventListener("DOMContentLoaded", function() {
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(getLocation, function(error) {
-                console.log(error.message);
-            });
-        } else {
-            console.log("Geolocation을 지원하지 않는 브라우저 입니다.");
-        }
         function getLocation(position) {
 
             var latitud = position.coords.latitude;
             var longitude = position.coords.longitude;
 
-            var pass = String(latitud) + "/" + String(longitude);
-            document.frm.form_name.value = pass;
+
 
             var mapContainer = document.getElementById("map")    // 지도를 표시할 DIV
             var mapOption = {
@@ -39,6 +31,14 @@
             var marker = new daum.maps.Marker({ position:markerPosition });
 
             marker.setMap(map);
+        }
+
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(getLocation, function(error) {
+                console.log(error.message);
+            });
+        } else {
+            console.log("Geolocation을 지원하지 않는 브라우저 입니다.");
         }
     });
 
