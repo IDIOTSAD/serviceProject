@@ -59,7 +59,6 @@
         <p style="float: left;"> 탐색반경 : </p>
         <p id="kmdata" style="float: left;"> {{getdata}} </p>
         <p style="float: left;margin-right:8pt;">km</p>
-    </p>
 
     <form method="post" name = "pl">
         <input id = "plus" type="hidden" name="form_name2" value="0">
@@ -72,14 +71,14 @@
         <input type="hidden" name="minus_data">
         <input type="button" name="min" value="-" onclick="minus_click();">
     </form>
-  	<!---기본 메뉴--->
+
     <div style="float:left; margin-top:-10pt;">
     <ul class="board">
 	  	<li class="fl tc w500 title t_line">산 이름</li>
 	  	<li class="fl tc w120 title t_line">거리</li>
     </ul>
     {% for mountain, distance in getlist %}
-    <!--- 리스트 --->
+
     <ul class="board">
 	  	<li class="fl tc w500 list t_line lt_line">{{mountain}}</li>
 	  	<li class="fl tc w120 list t_line lt_line">{{distance}}km</li>
