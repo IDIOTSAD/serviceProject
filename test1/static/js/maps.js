@@ -5,11 +5,19 @@ var psss;
 
 function init()
 {
-    window.navigator.geolocation.getCurrentPosition(current_position);
+    console.log("시작함")
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(current_position);
+    }
+    else {
+    console.log("실행 안됨")
+    }
+
 }
 
 function current_position(position)
 {
+    console.log("제대로시작함")
     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
     lati = position.coords.latitude;
