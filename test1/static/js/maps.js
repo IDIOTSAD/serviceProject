@@ -1,15 +1,9 @@
 var map;
-var pass;
 var lati;
 var long;
+var psss;
 
-  new google.maps.Marker({
-    position: seoul,
-    map: map,
-    label: "서울 중심 좌표"
-  });
-
-     function init()
+function init()
 {
     window.navigator.geolocation.getCurrentPosition(current_position);
 }
@@ -35,8 +29,8 @@ function current_position(position)
 
     var marker = new google.maps.Marker({position:latlng,map:map,title:"You are here!"});
     }
-window.addEventListener("load", init);
 
+window.addEventListener("load", init);
 
 function initMap() {
   var seoul = { lat: lati ,lng: long };
@@ -44,4 +38,10 @@ function initMap() {
       zoom: 12,
       center: seoul
     });
+
+  new google.maps.Marker({
+    position: seoul,
+    map: map,
+    label: "서울 중심 좌표"
+  });
 }
