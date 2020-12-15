@@ -10,6 +10,8 @@ from haversine import haversine
 import pandas as pd
 import sys
 import pymysql
+from datetime import datetime, timedelta
+
 
 app = Flask(__name__)
 CORS(app)
@@ -32,7 +34,6 @@ db.close()
 @app.route('/result.html')
 def resultlist():
     global gpslist
-    print(gpslist)
     return render_template('result.html', lists = gpslist)
 
 def namefind():
@@ -86,20 +87,54 @@ def namefind():
             #print(n_mntnm.text, name, lat, lot)
             if (n_mntnm.text == name):
                 smalllist = []
-                smalllist.append(n_mntnm.text)
-                smalllist.append(lat)
-                smalllist.append(lot)
+                smalllist = sunsetfind(n_mntnm.text)
                 gpslist.append(smalllist)
 
     return redirect("/result.html")
 
-'''
-@app.route("/")
-def database():
-    my_res = Flask.response()
-    my_res.headers.add("Access-Control-Allow-Origin", "*")
-    return render_template("view.html")
-    '''
+def sunsetfind(mname):
+    yesterday = datetime.today() - timedelta(3)
+    date = (yesterday.strftime("%Y%m%d"))
+    global pos
+    if(pos in '강원'):
+        npos = '태백'
+    elif(pos in '경기'):
+        npos = '파주'
+    elif(pos in '경기'):
+        npos = '파주'
+    elif(pos in '전라'):
+        npos = '광주'
+    elif(pos in '충청'):
+        npos = '천안'
+    elif(pos in '경상'):
+        npos = '부산'
+    else:
+        npos = pos
+
+    API_KEY = unquote(
+        'Kta%2F9Kod3QYKj5%2BGOCSeMwH8Btt6f16uCKiNN9bBUk0wQYtxIquqcwZ%2FP8DAKIvSZE%2FZbjQgR87dRZI9fszUTw%3D%3D')
+    tpos = unquote(npos)
+    url = 'http://apis.data.go.kr/B090041/openapi/service/RiseSetInfoService/getAreaRiseSetInfo'
+    queryParams = '?' + urlencode(
+        {quote_plus('ServiceKey'): API_KEY, quote_plus('locdate'): date, quote_plus('location'): tpos})
+
+    request = Request(url + queryParams)
+    request.get_method = lambda: 'GET'
+    response_body = urlopen(request).read()
+    xtree = (ET.fromstring(response_body))
+    xroot = xtree.findall('body/items/item')
+
+    list = []
+    for node in xroot:
+        n_mntsr = node.find('sunrise')
+        n_mntss = node.find('sunset')
+        print(n_mntsr.text)
+        print(n_mntss.text)
+        list.append(mname)
+        list.append(n_mntsr.text)
+        list.append(n_mntss.text)
+        print(list)
+    return list
 
 @app.route('/test')
 def test():
