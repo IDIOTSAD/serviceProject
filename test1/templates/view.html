@@ -6,7 +6,7 @@
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3d08f81ad16de468a964885317e37ff8">
 </script>
 <script type="text/javascript">
-    function initMap()
+    function init()
 {
     window.navigator.geolocation.getCurrentPosition(current_position);
 }
@@ -34,7 +34,7 @@ window.addEventListener("load", init);
 <link href="static/css/styless.css?ver=14" rel="stylesheet" />
 </head>
 <body>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP5FCBBiQgHQE1shTj-6E5iU74qCPaU4g&callback=initMap"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP5FCBBiQgHQE1shTj-6E5iU74qCPaU4g"></script>
 
     <h1 style="text-align:center"> 명산 </h1>
     <div id="google_map" style="width:500px;height:500px;"></div>
