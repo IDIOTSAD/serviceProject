@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>:: GEOLOCATION + Daum Map API ::</title>
+<title>:: 현재 위치로 검색하기 ::</title>
 
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3d08f81ad16de468a964885317e37ff8">
 </script>
     <script type="text/javascript">
 
-    document.addEventListener("DOMContentLoaded", function() {
+ document.addEventListener("DOMContentLoaded", function() {
         function getLocation(position) {
 
             var latitud = position.coords.latitude;
@@ -43,27 +43,23 @@
         }
     });
 
-    </script>
-<link href="static/css/styless.css?ver=15" rel="stylesheet" />
+</script>
+<link href="static/css/styless.css?ver=14" rel="stylesheet" />
 </head>
 <body>
-    <h1 style="text-align:center"> 명산</h1>
-    <div id="map"  style="width:700px;height:600px;float: left;margin-right:20px;margin-left:20px;"></div>
+
+    <h1 style="text-align:center"> 명산 </h1>
+    <div id="map" style="width:500px;height:500px;"></div>
+
     <form method="post" name="frm" style="float:left;">
         <input type="hidden" name="form_name" value="">
-        <input type="button" name="dd" value="주변 산 탐색" onclick="search_click()" style="width:100pt;height:50pt;">
+        <input type="button" name="dd" value="주변 명산 리스트 검색" onclick="search_click();search_click2()" style="width:150pt;height:50pt;">
     </form>
-    <iframe name='ifrm' width='500' height='500' frameborder='0' style="display:none"></iframe>
-
     <p class="letter" style="float: left;margin:6pt;">
         <p style="float: left;"> 탐색반경 : </p>
         <p id="kmdata" style="float: left;"> {{getdata}} </p>
         <p style="float: left;margin-right:8pt;">km</p>
     </p>
-
-    <script>
-
-    </script>
 
     <form method="post" name = "pl">
         <input id = "plus" type="hidden" name="form_name2" value="0">
@@ -76,28 +72,26 @@
         <input type="hidden" name="minus_data">
         <input type="button" name="min" value="-" onclick="minus_click();">
     </form>
-
-
-     <!---기본 메뉴--->
-    <div style="float:right; margin-top:-10pt;">
+  	<!---기본 메뉴--->
+    <div style="float:left; margin-top:-10pt;">
     <ul class="board">
-        <li class="fl tc w70 title t_line">번호</li>
-        <li class="fl tc w500 title t_line">산 이름</li>
-        <li class="fl tc w120 title t_line">거리</li>
+	  	<li class="fl tc w500 title t_line">산 이름</li>
+	  	<li class="fl tc w120 title t_line">거리</li>
     </ul>
     {% for mountain, distance in getlist %}
     <!--- 리스트 --->
     <ul class="board">
-        <li class="fl tc w70 list t_line lt_line"  onclick="click()">1</li>
-        <li class="fl tc w500 list t_line lt_line">{{mountain}}</li>
-        <li class="fl tc w120 list t_line lt_line">{{distance}}km</li>
+	  	<li class="fl tc w500 list t_line lt_line">{{mountain}}</li>
+	  	<li class="fl tc w120 list t_line lt_line">{{distance}}km</li>
     </ul>
     {% endfor %}
         </div>
     <script type="text/javascript">
         var count = 0;
         function search_click(){
+            document.charset = "euc-kr";
             document.frm.submit();
+
         }
         function plus_click(){
             count += 1;
@@ -122,7 +116,5 @@
             alert(2);
         }
     </script>
-
 </body>
-
 </html>
