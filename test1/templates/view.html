@@ -22,41 +22,10 @@ function success(pos) {
     });
 };
 </script>
-    <script>
-    window.onload = function() {//문서가 로딩되면
-    var objs = document.getElementsByTagName('li');
-    for (var i=0; i<objs.length; i++) {
-        objs[i].addEventListener('click', function() {
-            if (this.getAttribute("id") == 'test') {
-                alert('참');
-            }
-            else {
-                alert('거짓');
-            }
-        });
-    }
-}
-</script>
-    <script>
-    window.onload = function() {//문서가 로딩되면
-    var objs = document.getElementsByTagName('li');
-    for (var i=0; i<objs.length; i++) {
-        objs[i].addEventListener('click', function() {
-            if (this.getAttribute("id") == 'test') {
-                alert('참');
-            }
-            else {
-                alert('거짓');
-            }
-        });
-    }
-}
-    </script>
 <link href="static/css/styless.css?ver=14" rel="stylesheet" />
 </head>
 <body>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP5FCBBiQgHQE1shTj-6E5iU74qCPaU4g&callback=initMap"></script>
-  <script src="/static/js/maps.js"></script>
 
     <h1 style="text-align:center"> 명산 </h1>
     <div id="google_map" style="width:500px;height:500px;"></div>
