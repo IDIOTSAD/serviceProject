@@ -246,7 +246,7 @@ def pos():
                 #dbresult2 = [list(dbresult2[x]) for x in range(len(dbresult2))]
                 db.close()
 
-                return render_template('view.html', getdata=tmp3[9][1], getlist=tmp6)
+                return render_template('view.html', getdata="123", getlist=tmp6)
 
             #com_loc = (36.984651947738186, 128.25628173348173)
             #passdata = haversine(my_loc, com_loc)
