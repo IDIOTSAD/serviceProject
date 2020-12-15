@@ -234,8 +234,7 @@ def pos():
                 tmp6 = []
                 for i in range(0, 10):
                     tmp6.append(tmp3[i])
-                db = pymysql.connect(host='127.0.0.1', port=330, user='root', passwd='0000', db='mountain',
-                                     charset='utf8')
+                db = pymysql.connect(host='ls-dabfbe9c5ca0935227d202f8d155d3e6b5c45c39.c5fozztbs2zp.ap-northeast-2.rds.amazonaws.com', port=3306, user='dbmasteruser', passwd='6E0C?Qz|^%qL3<XR;)N:eO=QDq%lYWd>', db='mn', charset='utf8')
                 dbresult2 = ()
                 cursor = db.cursor()
                 print(tmp6)
