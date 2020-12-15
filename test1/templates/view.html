@@ -6,7 +6,7 @@
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=3d08f81ad16de468a964885317e37ff8">
 </script>
 <script type="text/javascript">
-    function initMap()
+    function init()
 {
     window.navigator.geolocation.getCurrentPosition(current_position);
 }
@@ -29,7 +29,7 @@ function current_position(position)
 
     var marker = new google.maps.Marker({position:latlng,map:map,title:"You are here!"});
     }
-window.addEventListener("load", initMap);
+window.addEventListener("load", init);
 </script>
 <link href="static/css/styless.css?ver=14" rel="stylesheet" />
 </head>
